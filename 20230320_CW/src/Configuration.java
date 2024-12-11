@@ -4,17 +4,20 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Configuration {
-    private int totalTickets;
-    private int ticketReleaseRate;
-    private int customerRetrievalRate;
-    private int maxTicketCapacity;
+    // Fields for storing configuration properties
+    private int totalTickets;// Total number of tickets available
+    private int ticketReleaseRate;// Rate at which tickets are released
+    private int customerRetrievalRate;// Rate at which customers retrieve tickets
+    private int maxTicketCapacity;// Maximum ticket capacity of the system
 
+    // Constructor to initialize the configuration object
     public Configuration(int totalTickets, int ticketReleaseRate, int customerRetrievalRate, int maxTicketCapacity) {
         this.totalTickets = totalTickets;
         this.ticketReleaseRate = ticketReleaseRate;
         this.customerRetrievalRate = customerRetrievalRate;
         this.maxTicketCapacity = maxTicketCapacity;
     }
+    // Serialize the Configuration object into a JSON string
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this);  // in this i used toJson method to convert the object to json file..  serialization approach..

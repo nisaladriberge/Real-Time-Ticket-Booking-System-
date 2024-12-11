@@ -5,23 +5,23 @@ import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-public class Main {
-    private static volatile boolean isRunning = true;
+public class Main { // Main class of the ticket management system
+    private static volatile boolean isRunning = true; // Shared flag to control program execution
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         int totalTickets = 0, ticketReleaseRate = 0, customerRetrievalRate = 0, maxTicketCapacity = 0;
 
-        System.out.println(
+        System.out.println(    // Display welcome message
                 "==============================================\n" +
                         "   WELCOME TO THE TICKET MANAGEMENT SYSTEM   \n" +
                         "==============================================");
-
+        // Prompt user to choose between new or existing configuration
         System.out.println("Y - Add new configuration settings...\nN - Use previous configuration settings");
 
         String choice = scanner.nextLine().toUpperCase();
 
         if (choice.equals("Y")) {
-            // Add new configuration settings
+            // Gather new configuration settings from the user
             totalTickets = getValidatedInput(scanner, "Enter the total tickets each vendor will release: ");
             ticketReleaseRate = getValidatedInput(scanner, "Enter the ticket release rate (tickets per minute): ");
             customerRetrievalRate = getValidatedInput(scanner, "Enter the customer retrieval rate (tickets per minute): ");
@@ -54,6 +54,7 @@ public class Main {
                 System.out.println("Customer Retrieval Rate: " + customerRetrievalRate);
                 System.out.println("Max Ticket Capacity: " + maxTicketCapacity);
             } else {
+                // Prompt user to enter new configuration if loading fails
                 System.out.println("Error loading previous configuration. Please enter new settings.");
                 totalTickets = getValidatedInput(scanner, "Enter the total tickets each vendor will release: ");
                 ticketReleaseRate = getValidatedInput(scanner, "Enter the ticket release rate (tickets per minute): ");
@@ -61,6 +62,7 @@ public class Main {
                 maxTicketCapacity = getValidatedInput(scanner, "Enter the maximum ticket capacity: ");
             }
         } else {
+            // Handle invalid input and terminate the program
             System.out.println("Invalid input. Exiting...");
             scanner.close();
             return;
